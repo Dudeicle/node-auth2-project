@@ -53,14 +53,11 @@ router.post("/login", (req, res) => {
 						token,
 					});
 				} else {
-					console.log("hello");
-					console.log(user);
-					console.log(username);
 					res.status(401).json({ message: "Invalid credentials number 1" });
 				}
 			})
 			.catch((error) => {
-				res.status(500).json({ message: error.message });
+				res.status(500).json({ message: error.message }, "hello");
 			});
 	} else {
 		res.status(400).json({
@@ -68,7 +65,7 @@ router.post("/login", (req, res) => {
 				"please provide username and password and the password shoud be alphanumeric",
 		});
 	}
-});
+}); // WORKING
 //  "$2a$08$mdmWENSo8Z9jORqNDNGT9eWYqN6lIlMMF9fYEI//QvAjZfQhsR3eO"
 function signToken(user) {
 	const payload = {

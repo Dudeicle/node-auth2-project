@@ -11,7 +11,7 @@ router.get("/", restricted, (req, res) => {
 		.catch((err) => res.send(err));
 });
 
-router.put("/:id", restricted, checkRole(["hr", "admin"]), (req, res) => {
+router.put("/:id", restricted, checkRole(["hr", "user"]), (req, res) => {
 	// use req.decodedToken data to restrict access by checking the role
 	res.status(200).json({ hello: "you made it!" });
 });
@@ -23,6 +23,7 @@ router.put("/:id", restricted, checkRole(["hr", "admin"]), (req, res) => {
 
 function checkRole(roles) {
 	return function (req, res, next) {
+		console.log("jwt", req.decodedToken);
 		if (roles.includes(req.decodedToken.role)) {
 			next();
 		} else {
