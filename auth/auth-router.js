@@ -35,7 +35,7 @@ router.post("/register", (req, res) => {
 				"please provide username and password and the password shoud be alphanumeric",
 		});
 	}
-});
+}); // WORKING
 
 // LOGIN AN EXISTING USER -- NO LOGOUT IS REQUIRED SINCE LOGOUT IS CLIENT SIDE
 router.post("/login", (req, res) => {
@@ -53,7 +53,10 @@ router.post("/login", (req, res) => {
 						token,
 					});
 				} else {
-					res.status(401).json({ message: "Invalid credentials" });
+					console.log("hello");
+					console.log(user);
+					console.log(username);
+					res.status(401).json({ message: "Invalid credentials number 1" });
 				}
 			})
 			.catch((error) => {
@@ -66,7 +69,7 @@ router.post("/login", (req, res) => {
 		});
 	}
 });
-
+//  "$2a$08$mdmWENSo8Z9jORqNDNGT9eWYqN6lIlMMF9fYEI//QvAjZfQhsR3eO"
 function signToken(user) {
 	const payload = {
 		subject: user.id,
